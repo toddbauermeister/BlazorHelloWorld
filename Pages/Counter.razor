@@ -1,0 +1,56 @@
+@* when a request is made for /counter by the browser, the @@page directive below will cause the Counter component to
+    render it's content *@
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+@*
+    - When a button is clicked, the lifecycle at a very basic level is:
+    - onClick event is fired
+    - Increment / Decrement / Clear method is called
+    - currentCount is altered
+    - component is rendered to show updated count
+*@
+
+@* +1 *@
+<div class="row">
+    <div class="col-1"> <button class="btn btn-primary mb-2 w-100" @onclick="IncrementCount"> +1</button></div>
+    <div class="col-11"> </div>
+</div>
+
+@* -1 *@
+<div class="row">
+    <div class="col-1"> <button class="btn btn-secondary mb-2 w-100" @onclick="DecrementCount"> -1</button></div>
+    <div class="col-11"> </div>
+</div>
+
+@* clear *@
+<div class="row">
+    <div class="col-1"> <button class="btn btn btn-dark w-90" @onclick="ClearCount">clear</button></div>
+    <div class="col-11"> </div>
+</div>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void DecrementCount()
+    {
+        // Set 0 as the minimum
+        if (currentCount != 0)
+        {
+            currentCount--;
+        }
+    }
+
+    private void ClearCount()
+    {
+        currentCount = 0;
+    }
+}
